@@ -3,33 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOSA Vibe Coding</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>OUR TEAM — Portfolio</title>
+
+    <style>
+        :root {
+            --background: #f5f5f2;
+            --ink: #191919;
+            --muted: #70706b;
+            --line: #d8d8d2;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--ink);
+            font-family: Arial, "맑은 고딕", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 64px));
+            margin-inline: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-block: 28px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo {
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+        }
+
+        .header-label {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--ink);
+        }
+
+        .hero {
+            position: relative;
+            padding: 76px 0 54px;
+        }
+
+        .eyebrow {
+            margin: 0 0 24px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(42px, 7vw, 88px);
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+        }
+
+        h1 span {
+            color: #858580;
+        }
+
+        .hero-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            margin-top: 36px;
+        }
+
+        .hero-bottom p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.8;
+            word-break: keep-all;
+        }
+
+        .hero-mark {
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-top: 24px;
+            border-top: 1px solid var(--ink);
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+        }
+
+        .section-heading span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .members {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            padding-bottom: 72px;
+        }
+
+        .member {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: #fff;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .member:hover {
+            transform: translateY(-6px);
+            border-color: #aaa;
+            box-shadow: 0 18px 36px #0000000d;
+        }
+
+        .member:focus-visible {
+            outline: 3px solid var(--ink);
+            outline-offset: 5px;
+        }
+
+        .card-visual {
+            position: relative;
+            display: grid;
+            place-items: center;
+            height: 245px;
+            overflow: hidden;
+            isolation: isolate;
+            background: #e9e9e5;
+        }
+
+        /* 배경 장식 */
+        .card-visual::before,
+        .card-visual::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 210px;
+            height: 210px;
+            border: 1px solid #00000012;
+            border-radius: 50%;
+        }
+
+        .card-visual::before {
+            transform: translate(-55px, 30px);
+        }
+
+        .card-visual::after {
+            transform: translate(55px, -30px);
+        }
+
+        .member:nth-child(2) .card-visual {
+            background: #222;
+            color: #fff;
+        }
+
+        .member:nth-child(2) .card-visual::before,
+        .member:nth-child(2) .card-visual::after {
+            border-color: #ffffff24;
+            border-radius: 28px;
+            rotate: -30deg;
+        }
+
+        .member:nth-child(3) .card-visual {
+            background: #deded9;
+        }
+
+        .member:nth-child(3) .card-visual::before,
+        .member:nth-child(3) .card-visual::after {
+            border-radius: 0;
+            rotate: 45deg;
+        }
+
+        .card-number {
+            position: absolute;
+            top: 20px;
+            left: 22px;
+            font-size: 10px;
+            letter-spacing: 1px;
+            opacity: 0.6;
+        }
+
+        .monogram {
+            font-size: 56px;
+            font-weight: 900;
+            letter-spacing: -3px;
+            transition: transform 0.3s ease;
+        }
+
+        .member:hover .monogram {
+            transform: scale(1.07);
+        }
+
+        .card-info {
+            padding: 24px;
+        }
+
+        .card-info h3 {
+            margin: 0 0 20px;
+            font-size: 21px;
+            letter-spacing: -0.5px;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-bottom > span:first-child {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .arrow {
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            font-size: 18px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .member:hover .arrow {
+            background: var(--ink);
+            color: #fff;
+            border-color: var(--ink);
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-block: 24px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                width: calc(100% - 40px);
+            }
+
+            .hero {
+                padding-top: 56px;
+            }
+
+            .hero-bottom p {
+                font-size: 13px;
+            }
+
+            .members {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .card-visual {
+                height: 230px;
+            }
+
+            footer {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+
+            .member:hover,
+            .member:hover .monogram {
+                transform: none;
+            }
+        }
+    </style>
 </head>
+
 <body>
-
-    <header>
-        <h1>KOSA Vibe Coding Team</h1>
-        <p>바이브 코딩으로 만드는 팀 자기소개 페이지</p>
-    </header>
-
-    <main>
-        <section>
-            <h2>Team Members</h2>
-
-            <div class="member-list">
-                <!-- 팀원별 자기소개 페이지 링크가 들어갈 영역 -->
- 
-                 <a href="intro.html">이준오</a>
-
-                <a href="https://titaneffect.github.io/">
-                김용진의 github page
-                </a>
-         
+    <div class="container">
+        <header>
+            <div class="logo">OUR TEAM.</div>
+            <div class="header-label">
+                <span class="dot" aria-hidden="true"></span>
+                KOSA · VIBE CODING
             </div>
-        </section>
-    </main>
+        </header>
 
-    <script src="js/main.js"></script>
+        <main>
+            <section class="hero">
+                <p class="eyebrow">THREE PEOPLE. THREE STORIES.</p>
+                <h1>Different minds.<br><span>One team.</span></h1>
+
+                <div class="hero-bottom">
+                    <p>각자의 개성으로, 함께 만드는 포트폴리오.</p>
+                    <span class="hero-mark" aria-hidden="true">↘</span>
+                </div>
+            </section>
+
+            <section aria-labelledby="members-title">
+                <div class="section-heading">
+                    <h2 id="members-title">MEET THE MEMBERS</h2>
+                    <span>01 — 03</span>
+                </div>
+
+                <div class="members">
+                    <!-- 팀원 1: 링크, 이니셜, 이름 변경 -->
+                    <a class="member" href="members/intro_hj.html">
+                        <div class="card-visual" aria-hidden="true">
+                            <span class="card-number">MEMBER / 01</span>
+                            <span class="monogram">01</span>
+                        </div>
+
+                        <div class="card-info">
+                            <h3>최희조</h3>
+                            <div class="card-bottom">
+                                <span>포트폴리오 보기</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 팀원 2: #을 실제 HTML 경로로 변경 -->
+                    <a class="member" href="members/intro_yj.html">
+                        <div class="card-visual" aria-hidden="true">
+                            <span class="card-number">MEMBER / 02</span>
+                            <span class="monogram">02</span>
+                        </div>
+
+                        <div class="card-info">
+                            <h3>김용진</h3>
+                            <div class="card-bottom">
+                                <span>포트폴리오 보기</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 팀원 3: #을 실제 HTML 경로로 변경 -->
+                    <a class="member" href="members/intro_jo.html">
+                        <div class="card-visual" aria-hidden="true">
+                            <span class="card-number">MEMBER / 03</span>
+                            <span class="monogram">03</span>
+                        </div>
+
+                        <div class="card-info">
+                            <h3>이준오</h3>
+                            <div class="card-bottom">
+                                <span>포트폴리오 보기</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <span>OUR TEAM / PORTFOLIO</span>
+            <span>BUILT TOGETHER, WITH AI.</span>
+        </footer>
+    </div>
 </body>
 </html>
