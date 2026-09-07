@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.member-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}

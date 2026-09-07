@@ -1,0 +1,1 @@
+console.log("KOSA Vibe Coding Project");
